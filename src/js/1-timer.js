@@ -59,9 +59,7 @@ startBtn.addEventListener('click', () => {
   }, 1000);
 });
 
-// Функція для оновлення інтерфейсу
 function updateTimer({ days, hours, minutes, seconds }) {
-// function updateTimer({ days = 0, hours = 0, minutes = 0, seconds = 0 } = {}) {
   daysDisplay.textContent = addLeadingZero(days);
   hoursDisplay.textContent = addLeadingZero(hours);
   minutesDisplay.textContent = addLeadingZero(minutes);
