@@ -1,4 +1,3 @@
-
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
@@ -14,7 +13,6 @@ const secondsDisplay = document.querySelector('[data-seconds]');
 let userSelectedDate = null;
 let timerId = null;
 
-// Кнопка спочатку неактивна
 startBtn.disabled = true;
 
 const options = {
@@ -27,7 +25,6 @@ const options = {
 
     if (selectedDate <= new Date()) {
       iziToast.error({
-        title: 'Error',
         message: 'Please choose a date in the future',
         position: 'topRight',
       });
@@ -41,7 +38,7 @@ const options = {
 
 flatpickr("#datetime-picker", options);
 startBtn.addEventListener('click', () => {
-  // Блокуємо інтерфейс після старту
+  
   startBtn.disabled = true;
   input.disabled = true;
 
@@ -51,8 +48,9 @@ startBtn.addEventListener('click', () => {
 
     if (diff <= 0) {
       clearInterval(timerId);
-      updateTimer(0, 0, 0, 0);
-      input.disabled = false; // Розблокуємо інпут після завершення
+      // updateTimer(0, 0, 0, 0);
+      updateTimer({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      input.disabled = false; 
       return;
     }
 
@@ -63,6 +61,7 @@ startBtn.addEventListener('click', () => {
 
 // Функція для оновлення інтерфейсу
 function updateTimer({ days, hours, minutes, seconds }) {
+// function updateTimer({ days = 0, hours = 0, minutes = 0, seconds = 0 } = {}) {
   daysDisplay.textContent = addLeadingZero(days);
   hoursDisplay.textContent = addLeadingZero(hours);
   minutesDisplay.textContent = addLeadingZero(minutes);
